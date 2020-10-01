@@ -38,13 +38,13 @@ int setUpFilter(void) {
         telnetFilterHook.priority = NF_IP_PRI_FIRST;
 
         // Register the hook.
-        nf_register_hook(&telnetFilterHook);
+        nf_register_net_hook(&telnetFilterHook);
         return 0;
 }
 
 void removeFilter(void) {
         printk(KERN_INFO "Telnet filter is being removed.\n");
-        nf_unregister_hook(&telnetFilterHook);
+        nf_unregister_net_hook(&telnetFilterHook);
 }
 
 module_init(setUpFilter);
